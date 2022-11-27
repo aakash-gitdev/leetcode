@@ -1,3 +1,5 @@
+Q - https://leetcode.com/problems/construct-the-rectangle/submissions/850816203/
+
 Intuition-
 We want to minimize the difference between l and w, hence start with the max possible value of w i.e sqrt(area), and go till it reaches 1. Worst case, w = 1 and l = area(max difference)
 
