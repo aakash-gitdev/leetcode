@@ -1,0 +1,48 @@
+Intuition-
+
+1) Just use a hash map and store node values in it.
+2) Find the difference of all node values and target and try to find in map, if found then true else false
+
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+
+    void f(TreeNode* node, int k, map<int, int> &v, vector<int> &u){
+        if(node == NULL) return;
+
+        v[node->val] ++;
+        u.push_back(node->val);
+        f(node->left, k , v, u);
+        f(node->right, k, v, u);
+
+    }
+    bool findTarget(TreeNode* root, int k) {
+        vector<int> u;
+        map<int,int> v;
+        if(root == NULL) return false;
+        if(root->left == NULL && root->right == NULL) return false;
+        f(root, k,v,u);
+        for(int i=0;i<u.size();i++){
+            if(v.find(k - u[i]) != v.end() && (k - u[i] != u[i])){
+            return true;
+        }
+        }
+        
+        
+
+        return false;
+        
+    }
+};
